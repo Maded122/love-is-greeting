@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поздравление</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...') no-repeat center center fixed;
+    background-size: cover;
+  }
+  h1 {
+    color: #fff;
+    text-shadow: 1px 1px 5px #000;
+  }
+  button {
+    background-color: #ff4d94;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    margin: 20px;
+    font-size: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 1s ease-out forwards;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Слушай поздравление!</h1>
+<button id="playBtn">▶️ Воспроизвести</button>
+
+<script>
+// Встроенный тестовый звук (~5 секунд). 
+// ЗАМЕНИ эту строку на свой Base64-аудио.
+const audioBase64 = "data:audio/mp3;base64,//uQxAAABAA...";
+
+const btn = document.getElementById("playBtn");
+btn.onclick = () => {
+  const audio = new Audio(audioBase64);
+  audio.play();
+
+  const heart = document.createElement("span");
+  heart.className = "heart";
+  heart.textContent = "❤️";
+  heart.style.left = Math.random() * btn.offsetWidth + "px";
+  btn.appendChild(heart);
+
+  setTimeout(() => btn.removeChild(heart), 1000);
+};
+</script>
+
+</body>
+</html>
